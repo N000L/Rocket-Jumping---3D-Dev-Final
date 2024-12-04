@@ -4,7 +4,8 @@ using UnityEngine;
 
 //discussions.unity.com/t/force-on-character-controller-knockback/40743/3
 
-//make it so the vector3 is local and global
+//The script that is called to do the math for the explosion
+//Sectioned off as its a little tricky to deal with
 
 public class ExplosionScript
 {

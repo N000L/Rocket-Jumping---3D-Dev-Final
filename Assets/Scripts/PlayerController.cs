@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Experimental.AI;
 
 //Last updated 11/20 Nolan
+//for weapon looking at mouse https://discussions.unity.com/t/rotating-an-object-to-face-the-mouse-location/390531/2
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
     Do not change the look limits and the speed, those are for the camera staying in the right spot and not to clip 
     through the ground.
 
+    Also to add a weapon go into the inspector and drop the weapon object manually into Weapon List
     */
     public List<BaseGun> weaponList;
     public float PLAYER_SPEED;
@@ -25,15 +27,20 @@ public class PlayerController : MonoBehaviour
     public float lookLimitX, lookLimitY, lookSpeed;
     public GameObject neck, cam, fpsMarker;
     public GameObject marker;
+    public Transform GunObjectLocation;
 
     
-    private float MAX_DISTANCE, EXPLOSION_FORCE;
+    private float maxDistance, explosionForce, reloadTime;
+    private bool isHitScan;
     private Vector3 movement = Vector3.zero;
     private Vector3 jumpMovement = Vector3.zero;
     private ExplosionScript explosionScript;
     private bool isGrounded;
     private CharacterController controller;
     private float rotationY;
+    private GameObject currentWeaponModel;
+    private bool canShoot = true;
+    private int currentWeapon = 0;
     
     void Awake()
     {
@@ -43,8 +50,7 @@ public class PlayerController : MonoBehaviour
         //Cursor.visible = false;
         explosionScript = new ExplosionScript();
         explosionScript.character = controller;
-        EXPLOSION_FORCE = weaponList[0].EXPLOSION_FORCE;
-        MAX_DISTANCE = weaponList[0].MAX_DISTANCE;
+        InstantiateWeapon();
     }
 
 
@@ -53,9 +59,10 @@ public class PlayerController : MonoBehaviour
     {
         MoveCamera();
         MovePlayer();
-        SpawnExplosion();
         explosionScript.ExplosionUpdate();
         ChangeCameraParent();
+        ChangeWeapon();
+        ShootWeapon();
     }
 
     void MovePlayer()
@@ -87,6 +94,7 @@ public class PlayerController : MonoBehaviour
         float neckRotationY = Mathf.Clamp(rotationY, -lookLimitX, lookLimitY);
         //cam up down
         cam.transform.localRotation = Quaternion.Euler(rotationY, 0, 0);
+        GunObjectLocation.localRotation = Quaternion.Euler(rotationY, 0, 0);
         //neck up down
         neck.transform.localRotation = Quaternion.Euler(neckRotationY, 0, 0);
         //player left right
@@ -95,49 +103,48 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
         if (!isGrounded)
         {
             jumpMovement.y +=  Time.deltaTime * Physics.gravity.y;
-            
         }
         else
         {
             jumpMovement.y = -2;
         }
-
         if (Input.GetButton("Jump")  && isGrounded)
         {
-            
             jumpMovement.y += Mathf.Sqrt(JUMP_POWER * -2f * Physics.gravity.y);
         }
-
         controller.Move(jumpMovement * Time.deltaTime);
     }
 
     void SpawnExplosion()
     {
-        if (Input.GetMouseButtonDown(0))
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit, layerMask))
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, layerMask))
+            Debug.Log("The ray hit at: "+hit.point);
+            Debug.Log(hit.point - this.transform.position);
+            Instantiate(marker, hit.point, Quaternion.identity);
+            float dis = (hit.point - this.transform.position).magnitude;
+            if (dis < maxDistance)
             {
-                Debug.Log("The ray hit at: "+hit.point);
-                Debug.Log(hit.point - this.transform.position);
-                Instantiate(marker, hit.point, Quaternion.identity);
-                float dis = (hit.point - this.transform.position).magnitude;
-                if (dis < MAX_DISTANCE)
-                {
-                    explosionScript.AddImpact(-(hit.point - this.transform.position), EXPLOSION_FORCE/(hit.point - this.transform.position).magnitude);
-                }
-                
+                explosionScript.AddImpact(-(hit.point - this.transform.position), explosionForce/(hit.point - this.transform.position).magnitude);
             }
+        }
+        //helps with player feel
+        movement.y = 0;
+    }
 
-            //helps with player feel
-            movement.y = 0;
+    void ShootWeapon()
+    {
+        if (Input.GetMouseButtonDown(0) && canShoot)
+        {
+            SpawnExplosion();
+            canShoot = false;
+            StartCoroutine(ReloadTimer());
         }
     }
 
@@ -157,6 +164,44 @@ public class PlayerController : MonoBehaviour
                 cam.transform.position = fpsMarker.transform.position;
             }
         }
+    }
+
+    void ChangeWeapon()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (currentWeapon < weaponList.Count-1)
+            {
+                currentWeapon += 1;
+            }
+            else
+            {
+                currentWeapon = 0;
+            }
+            InstantiateWeapon();
+        }
+    }
+
+    void InstantiateWeapon()
+    {
+        GameObject[] toDestroy = GameObject.FindGameObjectsWithTag("Weapon");
+        foreach(GameObject go in toDestroy)
+        Destroy(go);
+
+        explosionForce = weaponList[currentWeapon].EXPLOSION_FORCE;
+        maxDistance = weaponList[currentWeapon].MAX_DISTANCE;
+        reloadTime = weaponList[currentWeapon].RELOAD_TIME;
+        isHitScan = weaponList[currentWeapon].IS_HITSCAN;
+        currentWeaponModel = Instantiate(weaponList[currentWeapon].WEAPON_MODEL, transform.position, Quaternion.identity);
+        currentWeaponModel.transform.position = GunObjectLocation.position;
+        currentWeaponModel.transform.rotation = GunObjectLocation.rotation;
+        currentWeaponModel.transform.parent = GunObjectLocation;
+    }
+
+    IEnumerator ReloadTimer()
+    {
+        yield return new WaitForSeconds(reloadTime);
+        canShoot = true;
     }
 
 }   

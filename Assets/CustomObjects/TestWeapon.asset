@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EXPLOSION_FORCE: 500
   MAX_DISTANCE: 50
+  RELOAD_TIME: 0.015
+  WEAPON_MODEL: {fileID: 2845281461626221541, guid: 4cbd1af7cfbbcb747a75736a4dec1f8d, type: 3}
+  PROJECTILE: {fileID: 0}
+  IS_HITSCAN: 1
