@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 864f3c286b56ac440b3acc3f62df09dd, type: 3}
-  m_Name: TestWeapon
+  m_Name: New Weapon
   m_EditorClassIdentifier: 
-  EXPLOSION_FORCE: 500
+  EXPLOSION_FORCE: 9000
   MAX_DISTANCE: 50
-  RELOAD_TIME: 0.01
-  WEAPON_MODEL: {fileID: 4757923705122289724, guid: 53818a59779d3304193bfff5acbb37c2, type: 3}
+  RELOAD_TIME: 1
+  WEAPON_MODEL: {fileID: 2500896235501686051, guid: 938c7b1f265072544a4f8ae6f0b8713f, type: 3}
   PROJECTILE: {fileID: 0}
   IS_HITSCAN: 1

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 864f3c286b56ac440b3acc3f62df09dd, type: 3}
   m_Name: CrazyWeapon
   m_EditorClassIdentifier: 
-  EXPLOSION_FORCE: 0
-  MAX_DISTANCE: 0
-  RELOAD_TIME: 0
-  WEAPON_MODEL: {fileID: 0}
+  EXPLOSION_FORCE: 90000
+  MAX_DISTANCE: 10
+  RELOAD_TIME: 1
+  WEAPON_MODEL: {fileID: 2278823061533959244, guid: 5f89f10b1976fb749a044487aa42f1e9, type: 3}
   PROJECTILE: {fileID: 0}
-  IS_HITSCAN: 0
+  IS_HITSCAN: 1

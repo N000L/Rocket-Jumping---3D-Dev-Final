@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 //This is the script that allows you to make new weapons that are easy to edit
@@ -13,6 +14,7 @@ public class BaseGun : ScriptableObject
     public float EXPLOSION_FORCE;
     public float MAX_DISTANCE;
     public float RELOAD_TIME;
+    public float PROJECTILE_SPEED;
 
     public GameObject WEAPON_MODEL;
 

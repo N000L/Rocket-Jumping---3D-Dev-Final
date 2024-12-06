@@ -7,7 +7,7 @@ using UnityEngine.Experimental.AI;
 //Last updated 11/20 Nolan
 //for weapon looking at mouse https://discussions.unity.com/t/rotating-an-object-to-face-the-mouse-location/390531/2
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerScript : MonoBehaviour
 {
 
     /*
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     public Transform GunObjectLocation;
 
     
-    private float maxDistance, explosionForce, reloadTime;
+    private float maxDistance, explosionForce, reloadTime, projectileSpeed;
     private bool isHitScan;
     private Vector3 movement = Vector3.zero;
     private Vector3 jumpMovement = Vector3.zero;
@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private float rotationY;
     private GameObject currentWeaponModel;
+    private GameObject weaponProjectile;
     private bool canShoot = true;
     private int currentWeapon = 0;
     
@@ -131,7 +132,16 @@ public class PlayerController : MonoBehaviour
             float dis = (hit.point - this.transform.position).magnitude;
             if (dis < maxDistance)
             {
-                explosionScript.AddImpact(-(hit.point - this.transform.position), explosionForce/(hit.point - this.transform.position).magnitude);
+                if (isHitScan)
+                {
+                    explosionScript.AddImpact(-(hit.point - this.transform.position), explosionForce/(hit.point - this.transform.position).magnitude);
+                }
+                else
+                {
+                    GameObject bullet = Instantiate(weaponProjectile, GunObjectLocation.transform.position, Quaternion.identity);
+                    Rigidbody rb = bullet.GetComponent<Rigidbody>();
+                    rb.AddForce((hit.point-this.transform.position) * projectileSpeed, ForceMode.Force);
+                }
             }
         }
         //helps with player feel
@@ -192,6 +202,8 @@ public class PlayerController : MonoBehaviour
         maxDistance = weaponList[currentWeapon].MAX_DISTANCE;
         reloadTime = weaponList[currentWeapon].RELOAD_TIME;
         isHitScan = weaponList[currentWeapon].IS_HITSCAN;
+        projectileSpeed = weaponList[currentWeapon].PROJECTILE_SPEED;
+        weaponProjectile = weaponList[currentWeapon].PROJECTILE;
         currentWeaponModel = Instantiate(weaponList[currentWeapon].WEAPON_MODEL, transform.position, Quaternion.identity);
         currentWeaponModel.transform.position = GunObjectLocation.position;
         currentWeaponModel.transform.rotation = GunObjectLocation.rotation;
@@ -202,6 +214,11 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(reloadTime);
         canShoot = true;
+    }
+
+    public void GetExplosion(Vector3 dir)
+    {
+        explosionScript.AddImpact(-(dir - this.transform.position),explosionForce/(dir - this.transform.position).magnitude);
     }
 
 }   
