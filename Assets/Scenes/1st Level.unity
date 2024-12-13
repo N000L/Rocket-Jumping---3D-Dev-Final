@@ -554,8 +554,8 @@ GameObject:
   - component: {fileID: 386454407}
   - component: {fileID: 386454406}
   - component: {fileID: 386454405}
-  - component: {fileID: 386454404}
   - component: {fileID: 386454408}
+  - component: {fileID: 386454409}
   m_Layer: 6
   m_Name: pole
   m_TagString: Untagged
@@ -578,20 +578,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 405963139}
   m_LocalEulerAnglesHint: {x: 0, y: 62.49, z: 0}
---- !u!114 &386454404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 386454402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcd58823c286cb74988217bf7f53f209, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextScene: {fileID: 102900000, guid: 24055d7937d929746b6526e019d24fe8, type: 3}
-  delayBeforeLoad: 2
 --- !u!65 &386454405
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -690,6 +676,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!114 &386454409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386454402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd58823c286cb74988217bf7f53f209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextScene:
+    m_Handle: 0
+  delayBeforeLoad: 2
 --- !u!1 &405963138
 GameObject:
   m_ObjectHideFlags: 0

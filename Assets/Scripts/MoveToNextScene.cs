@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MoveToNextScene : MonoBehaviour
 {
     [Header("Scene Load Settings")]
-    [SerializeField] private SceneAsset nextScene; // Drag the scene into this field in the inspector.
+    [SerializeField] private Scene nextScene; // Drag the scene into this field in the inspector.
     public float delayBeforeLoad = 2f; // Time to wait before loading the next scene.
 
     private bool isTriggered = false;
@@ -38,7 +38,7 @@ public class MoveToNextScene : MonoBehaviour
 
         if (nextScene != null)
         {
-            SceneManager.LoadScene(nextScene.name);
+            SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
         }
         else
         {
