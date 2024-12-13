@@ -5088,65 +5088,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1273773131343627506, guid: 01efc6759315bde4ba0327bbbf2e6827, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 1273773131343627506, guid: 01efc6759315bde4ba0327bbbf2e6827, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 7.33
-      objectReference: {fileID: 0}
-    - target: {fileID: 1273773131343627506, guid: 01efc6759315bde4ba0327bbbf2e6827, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99614894
-      objectReference: {fileID: 0}
-    - target: {fileID: 1273773131343627506, guid: 01efc6759315bde4ba0327bbbf2e6827, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.087678045
-      objectReference: {fileID: 0}
-    - target: {fileID: 1273773131343627506, guid: 01efc6759315bde4ba0327bbbf2e6827, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -10.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 2152281492922197555, guid: 01efc6759315bde4ba0327bbbf2e6827, type: 3}
-      propertyPath: JUMP_POWER
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2152281492922197555, guid: 01efc6759315bde4ba0327bbbf2e6827, type: 3}
-      propertyPath: weaponList.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2152281492922197555, guid: 01efc6759315bde4ba0327bbbf2e6827, type: 3}
-      propertyPath: weaponList.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 34938a34173a7ad4b8eeae432454b4fe, type: 2}
-    - target: {fileID: 2152281492922197555, guid: 01efc6759315bde4ba0327bbbf2e6827, type: 3}
-      propertyPath: weaponList.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 0b43d3411e840fc478ff0d7e6bdac045, type: 2}
-    - target: {fileID: 2152281492922197555, guid: 01efc6759315bde4ba0327bbbf2e6827, type: 3}
-      propertyPath: weaponList.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: f04116ede6d3b3f42aa2a26227566155, type: 2}
     - target: {fileID: 2841095472650122656, guid: 01efc6759315bde4ba0327bbbf2e6827, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841095472650122656, guid: 01efc6759315bde4ba0327bbbf2e6827, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3797268813862724250, guid: 01efc6759315bde4ba0327bbbf2e6827, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.61109
-      objectReference: {fileID: 0}
-    - target: {fileID: 3797268813862724250, guid: 01efc6759315bde4ba0327bbbf2e6827, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.61109
-      objectReference: {fileID: 0}
-    - target: {fileID: 3797268813862724250, guid: 01efc6759315bde4ba0327bbbf2e6827, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.61109
       objectReference: {fileID: 0}
     - target: {fileID: 3797268813862724250, guid: 01efc6759315bde4ba0327bbbf2e6827, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5187,10 +5131,6 @@ PrefabInstance:
     - target: {fileID: 3797268813862724250, guid: 01efc6759315bde4ba0327bbbf2e6827, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4447636013932589849, guid: 01efc6759315bde4ba0327bbbf2e6827, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.019
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

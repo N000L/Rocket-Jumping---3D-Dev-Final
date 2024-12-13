@@ -26,7 +26,6 @@ public class PlayerControllerScript : MonoBehaviour
     public LayerMask groundMask, layerMask;
     public float lookLimitX, lookLimitY, lookSpeed;
     public GameObject neck, cam, fpsMarker;
-    public GameObject marker;
     public Transform GunObjectLocation;
 
     
@@ -47,8 +46,8 @@ public class PlayerControllerScript : MonoBehaviour
     {
         //disables cursor in game, press escape to get it back
         controller = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
         explosionScript = new ExplosionScript();
         explosionScript.character = controller;
         InstantiateWeapon();
@@ -124,11 +123,10 @@ public class PlayerControllerScript : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, layerMask))
+        if (Physics.Raycast(ray, out hit))
         {
             Debug.Log("The ray hit at: "+hit.point);
             Debug.Log(hit.point - this.transform.position);
-            Instantiate(marker, hit.point, Quaternion.identity);
             float dis = (hit.point - this.transform.position).magnitude;
             if (dis < maxDistance)
             {
