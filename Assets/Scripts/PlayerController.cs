@@ -47,8 +47,8 @@ public class PlayerControllerScript : MonoBehaviour
     {
         //disables cursor in game, press escape to get it back
         controller = GetComponent<CharacterController>();
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         explosionScript = new ExplosionScript();
         explosionScript.character = controller;
         InstantiateWeapon();

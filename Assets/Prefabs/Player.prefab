@@ -342,8 +342,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 128
-  lookLimitX: 90
-  lookLimitY: 90
+  lookLimitX: 45
+  lookLimitY: 45
   lookSpeed: 7
   neck: {fileID: 1206958174530669035}
   cam: {fileID: 6644224402705753176}
