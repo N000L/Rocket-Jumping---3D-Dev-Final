@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 7308057949602151127}
   - component: {fileID: 2680801512392032128}
   - component: {fileID: 2152281492922197555}
+  - component: {fileID: 1558943930008908848}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -349,6 +350,33 @@ MonoBehaviour:
   fpsMarker: {fileID: 148295051875346998}
   marker: {fileID: 2278823061533959244, guid: 5f89f10b1976fb749a044487aa42f1e9, type: 3}
   GunObjectLocation: {fileID: 4447636013932589849}
+--- !u!54 &1558943930008908848
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2841095472650122656}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &6305488664571798791
 GameObject:
   m_ObjectHideFlags: 0

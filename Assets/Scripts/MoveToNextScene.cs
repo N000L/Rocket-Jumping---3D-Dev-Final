@@ -11,14 +11,16 @@ public class MoveToNextScene : MonoBehaviour
 
     private bool isTriggered = false;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player") && !isTriggered)
+        if (other.gameObject.tag == "Player")
         {
-            isTriggered = true;
-            StopPlayerMovement(collision.gameObject);
-            StartCoroutine(LoadNextSceneAfterDelay());
+        isTriggered = true;
+        StopPlayerMovement(other.gameObject);
+        StartCoroutine(LoadNextSceneAfterDelay());
+        Debug.Log(isTriggered);
         }
+
     }
 
     private void StopPlayerMovement(GameObject player)
